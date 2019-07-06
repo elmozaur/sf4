@@ -6,8 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 class Task
 {
-	
-	
+
 	/**
 	  * @Assert\NotBlank(groups={"Default", "Cyclic"})
       */
@@ -15,7 +14,7 @@ class Task
 	
 	/**
 	  * @ORM\Column(type="text")
-	  * @Assert\NotBlank(message="dffdfgdfg")
+	  * @Assert\NotBlank(message="ala ma kota")
 	  * @Assert\NotBlank(groups={"Cyclic"})
       */
 	protected $opis;
