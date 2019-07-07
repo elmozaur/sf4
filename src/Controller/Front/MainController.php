@@ -30,7 +30,7 @@ class MainController extends AbstractController
 			$task = $form->getData();
 			
 			
-			$komentarz = '<h1>wysłany i odebrany</h1>';
+			$komentarz = 'wysłany i odebrany';
 			// ... perform some action, such as saving the task to the database
 			// for example, if Task is a Doctrine entity, save it!
 			// $entityManager = $this->getDoctrine()->getManager();

@@ -4,18 +4,19 @@ namespace App\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Form\FormInterface;
+
 class Task
 {
 
 	/**
-	  * @Assert\NotBlank(groups={"Default", "Cyclic"})
+	  * @Assert\NotBlank(groups={"Task"})
       */
     protected $task;
 	
 	/**
 	  * @ORM\Column(type="text")
-	  * @Assert\NotBlank(message="ala ma kota")
-	  * @Assert\NotBlank(groups={"Cyclic"})
+	  * @Assert\NotBlank(message="ala ma kota", groups={"Opis"})
       */
 	protected $opis;
 
@@ -68,11 +69,34 @@ class Task
       */
       public static function getValidationGroups(FormInterface $form)
       {
-         $groups =  ['Default'];
-         
-         if ($form->getData()->getOpis) {
-            $groups[] = 'Cyclic';
-         }
+		 $groups =  [];
+		 $formData = $form->getData();
+		 
+		 switch($formData->wybieranie){
+			case '1':
+				//validacja tasku
+				$groups[] =  'Task';
+				break;
+			case '2':
+				//validacja opisu
+				$groups[] =  'Opis';
+				break;
+			case '3':
+				//validacja tasku i opisu
+				$groups[] =  'Task';
+				$groups[] =  'Opis';
+				break;
+			case '4':
+				//bez validacji
+				$groups[] =  'Default';
+				break;
+			case '5':
+				//bez validacji
+				$groups[] =  'Default';
+				$groups[] =  'Task';
+				$groups[] =  'Opis';
+				break;
+		 }
 
          return $groups;
       }
